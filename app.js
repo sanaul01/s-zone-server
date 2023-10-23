@@ -7,6 +7,9 @@ const mongoose = require("mongoose");
 app.use(express.json());
 app.use(cors());
 
+// schema design 
+
+
 app.get("/", (req, res)=>{
     res.send("Route is working");
 });
