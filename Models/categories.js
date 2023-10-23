@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const {ObjectId}= mongoose.Schema.Types;
-
+const { ObjectId } = mongoose.Schema.Types;
 
 const categorySchema = mongoose.Schema({
-    name:{
+    name: {
         type: String,
         trim: true,
         require: [true, "Please provide a name"],
@@ -13,15 +12,14 @@ const categorySchema = mongoose.Schema({
     },
 
     description: String,
-    
-    imageURL:{
+
+    imageURL: {
         type: String,
-        validate:[validator.isURL, "please provide a valid url"],
+        validate: [validator.isURL, "please provide a valid url"],
     },
-},{
+}, {
     timestamps: true
 });
-
 
 const Category = mongoose.model("Category", categorySchema);
 

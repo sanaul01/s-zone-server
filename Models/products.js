@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const {ObjectId} = mongoose.Schema.Types;
+const { ObjectId } = mongoose.Schema.Types;
 
 const productSchema = mongoose.Schema({
-    name:{
+    name: {
         type: String,
         trim: true,
         unique: true,
@@ -20,23 +20,23 @@ const productSchema = mongoose.Schema({
     unit: {
         type: String,
         require: true,
-        enum:{
-            values:["kg", "litre", "pcs", "bag"],
+        enum: {
+            values: ["kg", "litre", "pcs", "bag"],
             message: "Unit value can't be {VALUE}, must be kg/ litre/ pcs/ bag"
         }
     },
 
-    imageURLs:[{
+    imageURLs: [{
         type: String,
         require: true,
-        validate:{
-            validator: (value)=>{
-                if(!Array.isArray(value)){
+        validate: {
+            validator: (value) => {
+                if (!Array.isArray(value)) {
                     return false;
                 };
                 let isValid = true;
-                value.forEach(url =>{
-                    if(!validator.isURL(url)){
+                value.forEach(url => {
+                    if (!validator.isURL(url)) {
                         isValid = false;
                     }
                 })
@@ -46,23 +46,23 @@ const productSchema = mongoose.Schema({
         }
     }],
 
-    category:{
+    category: {
         type: String,
         require: true
     },
 
-    brand:{
-        name:{
+    brand: {
+        name: {
             type: String,
             require: true,
         },
-        id:{
+        id: {
             type: ObjectId,
             ref: "Brand",
             require: true
         }
     }
-},{
+}, {
     timestamps: true
 });
 

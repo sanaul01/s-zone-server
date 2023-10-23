@@ -3,7 +3,7 @@ const validator = require("validator");
 const { ObjectId } = mongoose.Schema.Types;
 
 const stockSchema = mongoose.Schema({
-    productId:{
+    productId: {
         type: ObjectId,
         require: true,
         ref: "Product"
@@ -53,16 +53,16 @@ const stockSchema = mongoose.Schema({
         }
     }],
 
-    price:{
+    price: {
         type: Number,
         require: true,
-        min:[0, "price can't be negetive"]
+        min: [0, "price can't be negetive"]
     },
 
-    quantity:{
+    quantity: {
         type: Number,
         require: true,
-        min:[0, "quantity can't be negetive"]
+        min: [0, "quantity can't be negetive"]
     },
 
     category: {
@@ -82,45 +82,45 @@ const stockSchema = mongoose.Schema({
         }
     },
 
-    status:{
+    status: {
         type: String,
         require: true,
-        enum:{
+        enum: {
             value: ["in-stock", "out-of-stock", "discontinue"],
-            message:"status can not be {VALUE}"
+            message: "status can not be {VALUE}"
         }
     },
 
-    store:{
-        name:{
+    store: {
+        name: {
             type: String,
             trim: true,
             require: [true, "please provide a store name"],
             lowercase: true,
-            enum:{
-               values: ["Dahka", "Chattogram", "Rajshahi", "Khulna", "Rangpur", "Sylhet"],
-               message: "{VALUE} is not a valid name"
-            }   
+            enum: {
+                values: ["Dahka", "Chattogram", "Rajshahi", "Khulna", "Rangpur", "Sylhet"],
+                message: "{VALUE} is not a valid name"
+            }
         },
-        id:{
+        id: {
             type: ObjectId,
             require: true,
             ref: "Store"
         }
     },
 
-    suppliedBy:{
-        name:{
-            type:String,
+    suppliedBy: {
+        name: {
+            type: String,
             trim: true,
-            require:[true, "plase provide a supplier name"]
+            require: [true, "plase provide a supplier name"]
         },
-        id:{
+        id: {
             type: ObjectId,
-            ref:"Supplier"
+            ref: "Supplier"
         }
     }
-},{
+}, {
     timestamps: true
 });
 

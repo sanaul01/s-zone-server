@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const {ObjectId}= mongoose.Schema.Type;
+const { ObjectId } = mongoose.Schema.Type;
 
 const brandSchema = mongoose.Schema({
-    name:{
+    name: {
         type: String,
         trim: true,
         required: [true, "please provid brand name"],
         minLength: [3, "Name must be at list 3 characters"],
         maxLength: [100, "Name has been over characters"],
-        unique: true, 
+        unique: true,
         lowercase: true
     },
 
@@ -19,36 +19,36 @@ const brandSchema = mongoose.Schema({
         validate: [validator.isURL, "please provide a valid url"]
     },
 
-    website:{
+    website: {
         type: String,
         validate: [validator.isURL, "please provide a valid url"]
     },
 
     location: String,
 
-    products:[{
+    products: [{
         type: ObjectId,
         ref: "Product"
     }],
 
-    suppliers:[{
+    suppliers: [{
         name: String,
         contanctNumber: String,
-        id:{
+        id: {
             type: ObjectId,
             ref: "suppliers"
         }
     }],
 
-    status:{
+    status: {
         type: String,
         enum: ['active', 'inactive'],
         default: "active"
     }
-},{
+}, {
     timestamps: true
 });
 
-
 const Brand = mongoose.model("Brand", brandSchema)
+
 exports = Brand;
